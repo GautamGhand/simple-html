@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
             cd /var/www/html
-            git pull origin main
+            sudo git pull origin main
             sudo systemctl restart apache2
 
       - name: Run SSH script on VMSS instance2
@@ -32,5 +32,5 @@ jobs:
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
             cd /var/www/html
-            git pull origin main
+            sudo git pull origin main
             sudo systemctl restart apache2
