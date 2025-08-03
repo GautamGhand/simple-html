@@ -19,38 +19,6 @@ jobs:
           username: ${{ secrets.VMSS_USER }}
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
-            APACHE_CONF="/etc/apache2/sites-available/000-default.conf"
-            if ! grep -q "^DirectoryIndex" "$APACHE_CONF"; then
-              echo "DirectoryIndex login.php" | sudo tee -a "$APACHE_CONF"
-            else
-              echo "DirectoryIndex already exists. Skipping."
-            fi
             cd /var/www/html
-            sudo apt upgrade -y
-            sudo apt update -y
-            sudo apt install php -y
-            sudo apt install mysql-client -y
-            sudo git pull origin main
-            sudo systemctl restart apache2
-
-      - name: Run SSH script on VMSS instance2
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.VMSS_HOST }}
-          port: ${{ secrets.VMSS_PORT2 }}
-          username: ${{ secrets.VMSS_USER }}
-          password: ${{ secrets.VMSS_PASSWORD }}
-          script: |
-            APACHE_CONF="/etc/apache2/sites-available/000-default.conf"
-            if ! grep -q "^DirectoryIndex" "$APACHE_CONF"; then
-              echo "DirectoryIndex login.php" | sudo tee -a "$APACHE_CONF"
-            else
-              echo "DirectoryIndex already exists. Skipping."
-            fi
-            cd /var/www/html
-            sudo apt upgrade -y
-            sudo apt update -y
-            sudo apt install php -y 
-            sudo apt install mysql-client -y
             sudo git pull origin main
             sudo systemctl restart apache2
