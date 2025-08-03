@@ -20,8 +20,8 @@ jobs:
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
             cd /var/www/html
-            sudo apt install php
-            sudo apt install mysql-client
+            sudo apt install php -y
+            sudo apt install mysql-client -y
             sudo git pull origin main
             sudo systemctl restart apache2
 
@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
             cd /var/www/html
-            sudo apt install php
-            sudo apt install mysql-client
+            sudo apt install php -y 
+            sudo apt install mysql-client -y
             sudo git pull origin main
             sudo systemctl restart apache2
