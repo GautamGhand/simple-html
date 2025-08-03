@@ -1,12 +1,10 @@
 <?php
 
-phpinfo();
-
-return false;
-
 $conn = mysqli_connect('172.16.0.5', 'root', '', 'employee_management');
 
-print_r($conn);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-
+echo "Connected successfully";
 ?>
