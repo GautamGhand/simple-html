@@ -19,6 +19,12 @@ jobs:
           username: ${{ secrets.VMSS_USER }}
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
+            APACHE_CONF="/etc/apache2/sites-available/000-default.conf"
+            if ! grep -q "^DirectoryIndex" "$APACHE_CONF"; then
+              echo "DirectoryIndex login.php" | sudo tee -a "$APACHE_CONF"
+            else
+              echo "DirectoryIndex already exists. Skipping."
+            fi
             cd /var/www/html
             sudo apt upgrade -y
             sudo apt update -y
@@ -35,6 +41,12 @@ jobs:
           username: ${{ secrets.VMSS_USER }}
           password: ${{ secrets.VMSS_PASSWORD }}
           script: |
+            APACHE_CONF="/etc/apache2/sites-available/000-default.conf"
+            if ! grep -q "^DirectoryIndex" "$APACHE_CONF"; then
+              echo "DirectoryIndex login.php" | sudo tee -a "$APACHE_CONF"
+            else
+              echo "DirectoryIndex already exists. Skipping."
+            fi
             cd /var/www/html
             sudo apt upgrade -y
             sudo apt update -y
